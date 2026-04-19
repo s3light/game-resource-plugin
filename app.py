@@ -186,7 +186,7 @@ def fuzzy_match_game(game_name):
 
 # ============ API 路由 ============
 
-@app.route('/api/search', methods=['GET'])
+@app.route('/api/search', methods=['GET', 'POST'])
 def search():
     """
     搜索游戏资源
@@ -257,7 +257,7 @@ def search():
     })
 
 
-@app.route('/api/games', methods=['GET'])
+@app.route('/api/games', methods=['GET', 'POST'])
 def get_games():
     """获取支持的游戏列表"""
     return jsonify({
@@ -266,14 +266,14 @@ def get_games():
     })
 
 
-@app.route('/api/types', methods=['GET'])
+@app.route('/api/types', methods=['GET', 'POST'])
 def get_types():
     """获取支持的资源类型"""
     return jsonify({
         "success": True,
         "types": ["攻略", "视频", "MOD", "下载", "论坛"]
     })
-@app.route('/openapi.json', methods=['GET'])
+@app.route('/openapi.json', methods=['GET', 'POST'])
 def openapi():
  """返回 OpenAPI 规范（Coze 插件用）"""
  return jsonify({
@@ -301,7 +301,7 @@ def openapi():
  })
 
 
-@app.route('/health', methods=['GET'])
+@app.route('/health', methods=['GET', 'POST'])
 def health():
     """健康检查"""
     return jsonify({"status": "ok", "service": "游戏资源宝库 API"})

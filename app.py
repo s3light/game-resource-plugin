@@ -285,8 +285,10 @@ def openapi():
  "paths": {
  "/api/search": {
  "get": {
- "operationId": "search_game",
  "summary": "搜索游戏资源",
+ ...
+ }
+}
  "parameters": [
  {"name": "game", "in": "query", "required": True},
  {"name": "type", "in": "query"},

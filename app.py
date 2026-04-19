@@ -273,6 +273,32 @@ def get_types():
         "success": True,
         "types": ["攻略", "视频", "MOD", "下载", "论坛"]
     })
+@app.route('/openapi.json', methods=['GET'])
+def openapi():
+ """返回 OpenAPI 规范（Coze 插件用）"""
+ return jsonify({
+ "openapi": "3.0.0",
+ "info": {
+ "title": "游戏资源宝库 API",
+ "version": "1.0.0"
+ },
+ "paths": {
+ "/api/search": {
+ "get": {
+ "summary": "搜索游戏资源",
+ "parameters": [
+ {"name": "game", "in": "query", "required": True},
+ {"name": "type", "in": "query"},
+ {"name": "limit", "in": "query"}
+ ],
+ "responses": {"200": {"description": "OK"}}
+ }
+ },
+ "/api/games": {"get": {"responses": {"200": {"description": "OK"}}}},
+ "/api/types": {"get": {"responses": {"200": {"description": "OK"}}}},
+ "/health": {"get": {"responses": {"200": {"description": "OK"}}}}
+ }
+ })
 
 
 @app.route('/health', methods=['GET'])

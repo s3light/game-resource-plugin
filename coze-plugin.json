@@ -1,0 +1,72 @@
+{
+  "schema_version": "v2",
+  "name": "游戏资源宝库",
+  "description": "输入游戏名称和资源类型，快速获取游戏攻略、视频、MOD、下载链接、论坛社区等资源。支持主流游戏：原神、王者荣耀、我的世界、英雄联盟、CS2、崩坏星穹铁道等。",
+  "icon": "🎮",
+  "category": "工具",
+  "version": "1.0.0",
+  "author": {
+    "name": "你的名字",
+    "contact": "你的邮箱"
+  },
+  "pricing": {
+    "type": "subscription",
+    "monthly_price": 9.9,
+    "currency": "CNY",
+    "free_quota": 10,
+    "quota_unit": "次/天"
+  },
+  "tools": [
+    {
+      "name": "search_game_resource",
+      "description": "搜索游戏资源，包括攻略、视频、MOD、下载、论坛等",
+      "endpoint": "/api/search",
+      "method": "GET",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "game": {
+            "type": "string",
+            "description": "游戏名称，如：原神、王者荣耀、我的世界、英雄联盟、CS2、崩坏星穹铁道",
+            "required": true
+          },
+          "type": {
+            "type": "string",
+            "description": "资源类型：攻略、视频、MOD、下载、论坛（不填则返回所有类型）",
+            "enum": ["攻略", "视频", "MOD", "下载", "论坛", ""]
+          },
+          "limit": {
+            "type": "integer",
+            "description": "返回结果数量，默认10",
+            "default": 10
+          }
+        }
+      }
+    },
+    {
+      "name": "list_games",
+      "description": "获取支持的游戏列表",
+      "endpoint": "/api/games",
+      "method": "GET"
+    },
+    {
+      "name": "list_types",
+      "description": "获取支持的资源类型",
+      "endpoint": "/api/types",
+      "method": "GET"
+    }
+  ],
+  "authentication": {
+    "type": "api_key",
+    "header": "X-API-Key"
+  },
+  "rate_limiting": {
+    "free": {
+      "requests_per_day": 10
+    },
+    "paid": {
+      "requests_per_day": -1,
+      "unlimited": true
+    }
+  }
+}
